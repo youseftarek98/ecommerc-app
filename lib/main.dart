@@ -1,13 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project_ecomerce/consts/colors.dart';
-import 'package:project_ecomerce/login.dart';
+
 import 'package:project_ecomerce/provider/dark_theme_provider.dart';
 import 'package:project_ecomerce/screens/bottom_bar.dart';
 import 'package:project_ecomerce/screens/feeds.dart';
 import 'package:project_ecomerce/widget/feeds_products.dart';
 import 'package:provider/provider.dart';
-import 'checkout_page.dart';
+
+
 import 'model_two/cart_item.dart';
 import 'model_two/favvorite_item.dart';
 import 'screens/cart.dart';
@@ -100,9 +101,7 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ), //HomePage() ,
                 routes: {
-                  "login": (context) => Login(),
                   "Home": (context) => Home(),
-                  "CheckOut": (context) => CheckOutPage(),
                   "FeedProducts": (context) => FeedProducts(),
                   "loginScreen" : (context) =>LoginScreen(),
                   "signUpScreen" : (context) =>SignUpScreen(),

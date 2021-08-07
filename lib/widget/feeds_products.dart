@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_ecomerce/helper/database_helper.dart';
 import 'package:project_ecomerce/model_two/cart_item.dart';
+import 'package:project_ecomerce/models/products.dart';
 import 'package:provider/provider.dart';
-import '../products.dart';
+
 
 
 

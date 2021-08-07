@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import '../products.dart';
+import 'package:project_ecomerce/models/products.dart';
+
+
 
 class CartItemPage extends ChangeNotifier {
   List<ProductsModel> _items = [];
