@@ -239,7 +239,7 @@ var db =DatabaseHelper() ;
                                   ) ,
                                   TextButton(
                                       onPressed: ()async{
-                                     await   _auth.signOut().then((value) => Navigator.pop(context)) ;
+                                     await   _auth.signOut().then((value) =>  Navigator.of(context).pushReplacementNamed("SignUpPage") );    ///Navigator.pop(context)) ;
                                       },
                                       child: Text("Ok" , style: TextStyle(color: Colors.red),) ,
                                   ) ,
@@ -249,7 +249,12 @@ var db =DatabaseHelper() ;
                         );
                       },
                       title: Text("Logout"),
-                      leading: Icon(Icons.exit_to_app),
+                      leading: IconButton(
+                        onPressed: (){
+
+                        },
+                        icon: Icon(Icons.exit_to_app),
+                      ) ,
                     ),
                   ),
                 ) ,
