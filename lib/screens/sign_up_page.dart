@@ -1,3 +1,7 @@
+
+
+
+
 import 'dart:io';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,8 +20,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
-
-
 /*
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
@@ -32,11 +34,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 
  */
-
-
-
-
-
 
 
 

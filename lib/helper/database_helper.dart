@@ -37,7 +37,7 @@ static Database? _db ;
   }
 
   void _onCreate(Database db, int version) async{
-  await db.execute("CREATE TABLE $tableUser($columnEmail INTEGER PRIMARY KEY, $columnName TEXT , $columnPhone TEXT , $columnPassword" );
+  await db.execute("CREATE TABLE $tableUser($columnEmail  TEXT, $columnName TEXT , $columnPhone INTEGER PRIMARY KEY , $columnPassword" );
   }
 
   Future<int> saveUser (User user) async {
