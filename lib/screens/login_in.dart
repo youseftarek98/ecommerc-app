@@ -1,6 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:project_ecomerce/consts/global.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -17,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _password = "";
   bool _obscureText = true;
   bool _isLoading = false;
-
+  GlobalMethods _globalMethods = GlobalMethods();
   final FirebaseAuth _auth =FirebaseAuth.instance ;
   signUp() async {
     var formdata = _formKey.currentState;
@@ -50,23 +52,34 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } else {}
   }
-  void _submitForm()async{
-    final inValid =_formKey.currentState!.validate() ;
-    FocusScope.of(context).unfocus() ;
-
-    if(inValid){
+  void _submitForm() async {
+    final isValid = _formKey.currentState!.validate();
+    FocusScope.of(context).unfocus();
+    if (isValid) {
       setState(() {
-        _isLoading = true ;
+        _isLoading = true;
       });
-      _formKey.currentState!.save() ;
-      try{
-        await _auth.createUserWithEmailAndPassword(
-            email: _emailAddress.toLowerCase().trim(),
-            password: _password.trim()
-        );
-      }catch(error){
+      _formKey.currentState!.save();
+      try {
+        await _auth
+            .sendPasswordResetEmail(email: _emailAddress.trim().toLowerCase())
+            .then((value) => Fluttertoast.showToast(
+            msg: "An email has been sent",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0));
 
-        print("error occured ${error}") ;
+        Navigator.canPop(context) ? Navigator.pop(context) : null;
+      } catch (error) {
+        _globalMethods.authErrorHandle(error.toString(), context);
+        // print('error occured ${error.toString()}');
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
       }
     }
   }
@@ -184,6 +197,19 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)))),
                     ),
+                  ),
+                  
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 2 ,horizontal: 20),
+                      child: TextButton(
+                          onPressed: (){
+                           Navigator.pushNamed(context, "ForgetPassword");
+                          },
+                          child: Text("Forget Password" , style: TextStyle(color: Colors.blue.shade900 , decoration: TextDecoration.underline),)
+                      ),
+                    ) ,
                   ),
                   SizedBox(height: 35),
                   Row(

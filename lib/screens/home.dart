@@ -3,14 +3,15 @@ import 'package:backdrop/button.dart';
 import 'package:backdrop/scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project_ecomerce/cart_two.dart';
-import 'package:project_ecomerce/helper/database_helper.dart';
 import 'package:project_ecomerce/model_two/cart_item.dart';
 import 'package:project_ecomerce/model_two/favvorite_item.dart';
 import 'package:project_ecomerce/models/import.dart';
 import 'package:project_ecomerce/models/products.dart';
 import 'package:project_ecomerce/widget/screens_categories.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart';
+import 'package:card_swiper/card_swiper.dart';
+
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,12 +23,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   ProductsModel model = ProductsModel();
 
-  late DatabaseHelper helper ;
+
   int? id;
   @override
   void initState() {
     super.initState();
-    helper = DatabaseHelper() ;
+    //helper = DatabaseHelper() ;
     model;
   }
 
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
       return Scaffold(
         body: BackdropScaffold(
             frontLayerBackgroundColor:
-                Theme.of(context).scaffoldBackgroundColor,
+            Theme.of(context).scaffoldBackgroundColor,
             headerHeight: MediaQuery.of(context).size.height * 0.25,
             appBar: BackdropAppBar(
               title: Text(" Home"),
@@ -47,7 +48,7 @@ class _HomeState extends State<Home> {
               flexibleSpace: Container(
                 decoration: BoxDecoration(
                     gradient:
-                        LinearGradient(colors: [Colors.purple, Colors.white])),
+                    LinearGradient(colors: [Colors.purple, Colors.white])),
               ),
               actions: <Widget>[
                 CircleAvatar(
@@ -67,14 +68,30 @@ class _HomeState extends State<Home> {
                     children: [
                       Row(
                         children: [
+                          Consumer<Favorite>(builder: (context , favor , child){
+                            return Container(
+                              child: Row(
+                                children: [
+                                  IconButton(onPressed: (){
+                                    favor.listItems() ;
+                                    Navigator.of(context).pushNamed("Feeds");
+                                  }, icon: Icon(Icons.favorite_border)),
+                                  Text("${favor.listItems()!.length}"),
+                                ],
+                              ),
+                            );
+                          }),
+
+
                           IconButton(
                               onPressed: () {
+                                cartItemPage.listItem()!.length;
                                 Navigator.of(context).pushNamed("cart");
                               },
                               icon: Icon(Icons.shopping_cart_outlined)),
                         ],
                       ),
-                      Text("${cartItemPage.counter}"),
+                      Text("${cartItemPage.listItem()!.length}"),
 
                       // Text("${cartItemPage.counter}")
                     ],
@@ -117,6 +134,90 @@ class _HomeState extends State<Home> {
                         child: Text("Favorite"),
                       ),
                     ),
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(29))),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("baby");
+                        },
+                        child: Text("Fashion"),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(29))),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("electronics");
+                        },
+                        child: Text("Electronics"),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(29))),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("Baby");
+                        },
+                        child: Text("Baby"),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(29))),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("healthBeauty");
+                        },
+                        child: Text("Health & Beauty"),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(29))),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("phones");
+                        },
+                        child: Text("Phones"),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(29))),
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("supermarket");
+                        },
+                        child: Text("Supermarket"),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -125,12 +226,14 @@ class _HomeState extends State<Home> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "Categories",
                       style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                      TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                     ),
                   ),
                   Container(
@@ -153,7 +256,7 @@ class _HomeState extends State<Home> {
                             Navigator.of(context).pushNamed("FeedProducts");
                           },
                           child: Text(
-                            "View all...",
+                            "View all Products...",
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 //  color: Colors.red,
@@ -188,7 +291,7 @@ class _HomeState extends State<Home> {
                               child: GridView.builder(
                                 scrollDirection: Axis.horizontal,
                                 gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 1,
                                   childAspectRatio: 190 / 305,
                                   crossAxisSpacing: 10,
@@ -198,14 +301,26 @@ class _HomeState extends State<Home> {
                                 itemBuilder: (context, index) {
                                   return Consumer<Favorite>(builder: (context, favorite , child){
                                     return Container(
-                                        child: ListTile(
-                                          subtitle: ClipRRect(
-                                            borderRadius: BorderRadius.circular(10),
-                                            child: Image.network(
-                                                listModel[index].avatar.toString(),
-                                                fit: BoxFit.fill),
-                                          ),
+                                        child: Stack(
+                                          children: [
 
+                                            ListTile(
+                                              subtitle: ClipRRect(
+                                                borderRadius: BorderRadius.circular(10),
+                                                child: Image.network(
+                                                    listModel[index].avatar.toString(),
+                                                    fit: BoxFit.fill),
+                                              ),
+
+                                            ),
+                                            Badge(
+                                              toAnimate: true,
+                                              shape: BadgeShape.square,
+                                              badgeColor: Colors.pink,
+                                              borderRadius: BorderRadius.only(bottomRight: Radius.circular(8)),
+                                              badgeContent: Text('New', style: TextStyle(color: Colors.white)),
+                                            ),
+                                          ],
                                         )
                                     ) ;
                                   }) ;

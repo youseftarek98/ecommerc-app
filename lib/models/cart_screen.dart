@@ -6,7 +6,6 @@ import 'package:project_ecomerce/models/products.dart';
 class CartPage extends ChangeNotifier{
 
   List<ProductsModel> _items =[];
-
   double _totalPrice = 0.0 ;
 
   void add (ProductsModel items){
@@ -25,6 +24,7 @@ class CartPage extends ChangeNotifier{
 
 
   double  get totalPrice => _totalPrice ;
+
 
 
   List <ProductsModel> get basketItems => _items ;

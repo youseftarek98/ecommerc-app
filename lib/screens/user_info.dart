@@ -20,7 +20,7 @@ class _UserInfoState extends State<UserInfo> {
   var top = 0.0;
 
 
-var db =DatabaseHelper() ;
+//var db =DatabaseHelper() ;
 
   TextEditingController _textFieldController = TextEditingController() ;
 

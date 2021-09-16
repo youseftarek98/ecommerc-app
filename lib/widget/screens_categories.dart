@@ -1,5 +1,6 @@
 
 
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,44 +55,50 @@ class _ScreensCategoriesState extends State<ScreensCategories> {
                   ),
                   itemCount: listModel!.length ,
                   itemBuilder: (context , index){
-                    return  Stack(
+                    return
+                      Stack(
                       children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      listModel[index].avatar.toString(),
-                                  ),
-                                fit: BoxFit.cover
-                              )
-                            
-                          ),
 
-                        ),
-                        Positioned(
-                          bottom: 0,
-                            left: 10,
-                            right: 10,
-                            child: Center(
-                              child: Container(
-                               // margin: EdgeInsets.symmetric(vertical: 8.0 ,horizontal: 16),
-                               padding: EdgeInsets.only(left: 20 , right:  20 , top: 2.5 , bottom:  2.5),
-                               color: Colors.grey , //Theme.of(context).backgroundColor,
-                                child: Text(
-                                    listModel[index].name.toString() ,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500 ,
-                                  fontSize: 22 ,
-                                  color: Colors.black//Theme.of(context).backgroundColor,
-                                ),
-                                ),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        listModel[index].avatar.toString(),
+                                      ),
+                                      fit: BoxFit.cover
+                                  )
+
                               ),
+
+                            ),
+                            Positioned(
+                                bottom: 0,
+                                left: 10,
+                                right: 10,
+                                child: Center(
+                                  child: Container(
+                                    // margin: EdgeInsets.symmetric(vertical: 8.0 ,horizontal: 16),
+                                    padding: EdgeInsets.only(left: 20 , right:  20 , top: 2.5 , bottom:  2.5),
+                                    color: Colors.grey , //Theme.of(context).backgroundColor,
+                                    child: Text(
+                                      listModel[index].name.toString() ,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500 ,
+                                          fontSize: 22 ,
+                                          color: Colors.black//Theme.of(context).backgroundColor,
+                                      ),
+                                    ),
+                                  ),
+                                )
                             )
-                        )
+
+
                       ],
                     ) ;
+
+
                   },
                 )  ,
               );

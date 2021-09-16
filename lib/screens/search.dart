@@ -78,7 +78,7 @@ class Data extends SearchDelegate{
                   return InkWell(
                     onTap: (){
                       showResults(context) ;
-                     // Navigator.of(context).pushNamed("menu");
+                 //    Navigator.of(context).pushNamed("menu");
                       query = query== "" ? listModel[index].toString()  : filters [index].toString();
                       showResults(context);
                     },

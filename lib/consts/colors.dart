@@ -1,8 +1,8 @@
-
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class Styles{
-  static ThemeData themeData(bool isDarkTheme , BuildContext context){
+class Styles {
+  static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
       scaffoldBackgroundColor: isDarkTheme ? Colors.black :Colors.grey.shade300,
       primarySwatch: Colors.purple,
@@ -24,7 +24,7 @@ class Styles{
           colorScheme: isDarkTheme ? ColorScheme.dark() : ColorScheme.light()),
       appBarTheme: AppBarTheme(
         elevation: 0.0,
-    ) ,
+      ),
     );
   }
 }

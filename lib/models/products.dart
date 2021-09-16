@@ -42,33 +42,50 @@ class ProductsModel {
   String? get price_final_text => _price_final_text;
 
   ProductsModel({
-    bool? id,
-    bool? name,
-    bool? avatar,
-    bool? categoryId,
-    bool? price,
-    bool? in_stock,
-    bool? price_final,
-    bool? discount,
-    bool? title,
-    bool? description,
-    bool? discount_type,
+    id,
+    name,
+    avatar,
+    categoryId,
+    price,
+    in_stock,
+    price_final,
+     discount,
+     title,
+     description,
+     discount_type,
     bool? currency,
-    bool? price_final_text,
+    price_final_text,
+
+
+
+  //  bool? id,
+   // bool? name,
+   // bool? avatar,
+   // bool? categoryId,
+  //  bool? price,
+   // bool? in_stock,
+   // bool? price_final,
+   // bool? discount,
+   // bool? title,
+   // bool? description,
+   // bool? discount_type,
+   // bool? currency,
+   // bool? price_final_text,
+
   }) {
-    _id = id as int?;
-    _discount = id as int?;
-    _in_stock = id as int?;
-    _price = id as int?;
-    _category_id = id as int?;
-    _price_final = id as int?;
+    _id = id ;
+    _discount = discount;
+    _in_stock = in_stock;
+    _price = price;
+    _category_id = categoryId;
+    _price_final = price_final;
     _name = name as String?;
     _avatar = avatar as String?;
-    _title = avatar as String?;
-    _description = avatar as String?;
-    _discount_type = avatar as String?;
-    _currency = avatar as String?;
-    _price_final_text = avatar as String?;
+    _title = avatar;
+    _description = avatar ;
+    _discount_type = avatar ;
+    _currency = avatar ;
+    _price_final_text = avatar ;
   }
 
 
@@ -100,8 +117,8 @@ class ProductsModel {
     _price_final_text = json["price_final_text"];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
+  Map<String, String> toJson() {
+    final Map<String, String> data = {};
     data["price_final_text"] = this._price_final_text!.map((v) => v.toJson());
     data["name"] = this._name!.map((v) => v.toJson()).toList();
     data["title"] = this._title!.map((v) => v.toJson()).toList();

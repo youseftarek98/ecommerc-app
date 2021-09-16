@@ -1,31 +1,32 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project_ecomerce/consts/colors.dart';
-
 import 'package:project_ecomerce/provider/dark_theme_provider.dart';
+import 'package:project_ecomerce/screens/baby.dart';
+import 'package:project_ecomerce/screens/electronics.dart';
+import 'package:project_ecomerce/screens/fashion.dart';
 import 'package:project_ecomerce/screens/bottom_bar.dart';
 import 'package:project_ecomerce/screens/feeds.dart';
+import 'package:project_ecomerce/screens/forget_password.dart';
 import 'package:project_ecomerce/widget/feeds_products.dart';
 import 'package:provider/provider.dart';
-
-
 import 'model_two/cart_item.dart';
 import 'model_two/favvorite_item.dart';
 import 'screens/cart.dart';
+import 'screens/health_beauty.dart';
 import 'screens/home.dart';
 import 'screens/login_in.dart';
+import 'screens/phones.dart';
 import 'screens/sign_up_page.dart';
 import 'screens/landing_pagr.dart';
+import 'screens/supermarket.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+   await Firebase.initializeApp();
 
-  runApp(ChangeNotifierProvider(
-    create: (context) => CartItemPage(),
-    child: MyApp(),
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -85,6 +86,9 @@ class _MyAppState extends State<MyApp> {
               ChangeNotifierProvider(create: (_) {
                 return _favorite;
               }) ,
+              ChangeNotifierProvider<CartItemPage>(create: (_) {
+                return CartItemPage();
+              }) ,
 
             ],
             child:
@@ -95,9 +99,9 @@ class _MyAppState extends State<MyApp> {
                 theme: Styles.themeData(themeChangeProvider.darkTheme, context),
                 home: PageView(
                   children: [
-                    SignUpPage() ,
+                   SignUpPage() ,
                      //BottomBarScreens(),
-                    //SignUpScreen()
+                   // SignUpScreen()
                   ],
                 ), //HomePage() ,
                 routes: {
@@ -109,6 +113,13 @@ class _MyAppState extends State<MyApp> {
                   "cart" : (context) =>Cart(),
                   "Feeds" : (context) =>Feeds(),
                   "BottomBarScreens" : (context) =>BottomBarScreens(),
+                  "ForgetPassword" : (context) => ForgetPassword() ,
+                  "baby" : (context) => Fashion() ,
+                  "electronics" : (context) => Electronics() ,
+                  "Baby" : (context) => Baby() ,
+                  "healthBeauty" : (context) => HealthBeauty() ,
+                  "phones" : (context) => Phones() ,
+                  "supermarket" : (context) => Supermarket() ,
                 },
               );
             }));
